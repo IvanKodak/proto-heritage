@@ -5,9 +5,7 @@ function MyArray() {
 
   this.push(...arguments);
 
-  this.isMyArray = function isMyArray(obj) {
-    return obj instanceof MyArray ? true : false;
-  };
+  MyArray.isMyArray = (obj) => (obj instanceof MyArray ? true : false);
 }
 
 function MyArrayProto() {
@@ -75,7 +73,8 @@ MyArray.prototype = new MyArrayProto();
 
 const myArr = new MyArray(4, 12, 78);
 const myArr2 = new MyArray(1, 1, 1);
-//console.log(myArr2);
+
+console.log(MyArray.isMyArray(myArr));
 myArr2.unshift(1, 2, 3);
 myArr2.shift();
 console.log(myArr2);
