@@ -48,11 +48,20 @@ function MyArrayProto() {
     return concatArray;
   };
 
+  this.reverse = function reverse(arr) {
+    const copy = Object.assign(new Array(), this);
+
+    for(let i = 2; i < this.length; i++){
+      this[i] = copy.pop();
+    }
+
+    return this;
+  };
+
   this.pop = function pop() {
     if (this.length >= 0) {
       const lastItem = this[this.length - 1];
-      delete this[this.length - 1];
-      this.length--;
+      delete this[--this.length];
 
       return lastItem;
     }
@@ -75,6 +84,7 @@ const myArr = new MyArray(4, 12, 78);
 const myArr2 = new MyArray(1, 1, 1);
 
 console.log(MyArray.isMyArray(myArr));
+console.log(myArr.reverse());
 myArr2.unshift(1, 2, 3);
 myArr2.shift();
 console.log(myArr2);
